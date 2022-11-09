@@ -72,7 +72,6 @@ class Login extends React.Component {
             disabled={ !this.validation() }
             onClick={ this.handleClick }
           >
-          <button type="button" data-testid="btn-play" disabled={ !this.validation() }>
             Play
           </button>
         </form>
