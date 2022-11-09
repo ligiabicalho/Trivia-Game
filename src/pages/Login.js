@@ -35,12 +35,17 @@ class Login extends React.Component {
     history.push('/game');
   };
 
+  handleSettingsClick = () => {
+    const { history } = this.props;
+    history.push('/settings');
+  }
+
   render() {
     const { username, email } = this.state;
     return (
       <div className="Login">
         <header className="Login-header">
-          <img src={ logo } className="App-logo" alt="logo" />
+          <img src={logo} className="App-logo" alt="logo" />
           <p>SUA VEZ</p>
         </header>
         <form>
@@ -51,8 +56,8 @@ class Login extends React.Component {
               type="text"
               data-testid="input-player-name"
               name="username"
-              value={ username }
-              onChange={ this.handleChange }
+              value={username}
+              onChange={this.handleChange}
             />
           </label>
           <label htmlFor="email-input">
@@ -62,17 +67,24 @@ class Login extends React.Component {
               type="email"
               data-testid="input-gravatar-email"
               name="email"
-              value={ email }
-              onChange={ this.handleChange }
+              value={email}
+              onChange={this.handleChange}
             />
           </label>
           <button
             type="button"
             data-testid="btn-play"
-            disabled={ !this.validation() }
-            onClick={ this.handleClick }
+            disabled={!this.validation()}
+            onClick={this.handleClick}
           >
             Play
+          </button>
+          <button
+            type="button"
+            data-testid="btn-settings"
+            onClick={this.handleSettingsClick}
+          >
+            Configurações
           </button>
         </form>
       </div>
