@@ -1,5 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import logo from '../trivia.png';
+import fetchApiToken from '../services/fetchAPI';
+import saveLocalStorage from '../services/localStorage';
 
 class Login extends React.Component {
   constructor() {
@@ -23,6 +26,13 @@ class Login extends React.Component {
     const usernameValid = username.length > 0;
     return (emailRegex.test(email)
       && usernameValid);
+  };
+
+  handleClick = async () => {
+    const { history } = this.props;
+    const token = await fetchApiToken();
+    saveLocalStorage('token', token);
+    history.push('/game');
   };
 
   render() {
@@ -56,7 +66,12 @@ class Login extends React.Component {
               onChange={ this.handleChange }
             />
           </label>
-          <button type="button" data-testid="btn-play" disabled={ !this.validation() }>
+          <button
+            type="button"
+            data-testid="btn-play"
+            disabled={ !this.validation() }
+            onClick={ this.handleClick }
+          >
             Play
           </button>
         </form>
@@ -64,5 +79,11 @@ class Login extends React.Component {
     );
   }
 }
+
+Login.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }),
+}.isRequired;
 
 export default Login;
