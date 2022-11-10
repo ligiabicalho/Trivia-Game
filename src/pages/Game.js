@@ -107,7 +107,12 @@ class Game extends React.Component {
             : <p>Loading...</p>}
 
         </div>
-        <button type="button" onClick={ this.nextQuestion }>Próxima</button>
+        { isActive
+          && (
+            <button type="button" onClick={ this.nextQuestion } data-testid="btn-next">
+              Next
+            </button>
+          )}
       </div>
     );
   }
