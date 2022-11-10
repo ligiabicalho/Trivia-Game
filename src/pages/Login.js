@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import logo from '../trivia.png';
 import fetchApiToken from '../services/fetchAPI';
 import saveLocalStorage from '../services/localStorage';
+import { actionUserLogin } from '../redux/actions';
 
 class Login extends React.Component {
   constructor() {
@@ -28,8 +30,9 @@ class Login extends React.Component {
       && usernameValid);
   };
 
-  handleClick = async () => {
-    const { history } = this.props;
+  handlePlayClick = async () => {
+    const { history, dispatch } = this.props;
+    dispatch(actionUserLogin(this.state));
     const token = await fetchApiToken();
     saveLocalStorage('token', token);
     history.push('/game');
@@ -75,7 +78,7 @@ class Login extends React.Component {
             type="button"
             data-testid="btn-play"
             disabled={ !this.validation() }
-            onClick={ this.handleClick }
+            onClick={ this.handlePlayClick }
           >
             Play
           </button>
@@ -96,6 +99,7 @@ Login.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }),
+  dispatch: PropTypes.func,
 }.isRequired;
 
-export default Login;
+export default connect(null)(Login);
