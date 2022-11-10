@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
 import { fetchQuestions } from '../services/fetchAPI';
+import '../App.css';
 
 class Game extends React.Component {
   constructor() {
@@ -11,6 +12,7 @@ class Game extends React.Component {
       contador: 0,
       triviaResult: [],
       pack: {},
+      isActive: false,
     };
   }
 
@@ -48,13 +50,20 @@ class Game extends React.Component {
   nextQuestion = () => {
     this.setState((prevState) => ({
       contador: prevState.contador + 1,
+      isActive: false,
     }), () => this.sortAnswers());
+  };
+
+  changeColors = () => {
+    this.setState({
+      isActive: true,
+    });
   };
 
   render() {
     const { contador,
       triviaResult,
-      pack,
+      pack, isActive,
     } = this.state;
     return (
       <div className="Game">
@@ -73,6 +82,8 @@ class Game extends React.Component {
                           key={ index }
                           type="button"
                           data-testid="correct-answer"
+                          className={ isActive ? 'btn_verde' : null }
+                          onClick={ this.changeColors }
                         >
                           {answer}
                         </button>
@@ -82,6 +93,8 @@ class Game extends React.Component {
                           key={ index }
                           type="button"
                           data-testid={ `wrong-answer-${index}` }
+                          className={ isActive ? 'btn_vermelho' : null }
+                          onClick={ this.changeColors }
                         >
                           {answer}
                         </button>
