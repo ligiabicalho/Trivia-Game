@@ -1,27 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
+import Button from '../components/Button';
 
 class Feedback extends React.Component {
-  redirectLogin = () => {
-    const { history } = this.props;
-    history.push('/');
-  };
-
   render() {
+    const { history } = this.props;
     return (
       <>
         <Header />
         <p data-testid="feedback-text">
           Feedback
         </p>
-        <button
-          type="button"
-          data-testid="btn-play-again"
-          onClick={ this.redirectLogin }
-        >
-          Play Again
-        </button>
+        <Button dataTestId="btn-play-again" btnName="Play Again" history={ history } />
+        <Button dataTestId="btn-ranking" btnName="Ranking" history={ history } />
       </>
     );
   }
