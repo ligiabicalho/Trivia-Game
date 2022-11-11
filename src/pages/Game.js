@@ -20,7 +20,27 @@ class Game extends React.Component {
 
   async componentDidMount() {
     await this.fetchTrivia();
+    this.startTimer();
   }
+
+  stopTimer = () => {
+    const { timer } = this.state;
+    if (timer === 0) {
+      clearInterval(this.intervalID);
+      this.setState({
+        isActive: true,
+      });
+    }
+  };
+
+  startTimer = () => {
+    const ONE_SECOND = 1000;
+    this.intervalID = setInterval(() => {
+      this.setState((prev) => ({
+        timer: prev.timer - 1,
+      }), () => this.stopTimer());
+    }, ONE_SECOND);
+  };
 
   fetchTrivia = async () => {
     const { history } = this.props;
@@ -54,7 +74,9 @@ class Game extends React.Component {
     this.setState((prevState) => ({
       contador: prevState.contador + 1,
       isActive: false,
+      timer: 30,
     }), () => this.sortAnswers());
+    this.startTimer();
   };
 
   calcDificulty = () => {
@@ -74,7 +96,7 @@ class Game extends React.Component {
     }
   };
 
-  countScore = () => { // alterar estado global chave player.score, corrects: 10 + (timer * dificuldade)
+  countScore = () => {
     const { dispatch } = this.props;
     const { timer } = this.state;
     const difficulty = this.calcDificulty();
@@ -95,8 +117,11 @@ class Game extends React.Component {
   render() {
     const { contador,
       triviaResult,
-      pack, isActive,
+      pack,
+      isActive,
+      timer,
     } = this.state;
+
     return (
       <div className="Game">
         <Header />
@@ -105,6 +130,7 @@ class Game extends React.Component {
             ? (
               <div>
                 <h1 data-testid="question-category">{triviaResult[contador].category}</h1>
+                <p>{ timer }</p>
                 <p data-testid="question-text">{triviaResult[contador].question}</p>
                 <div data-testid="answer-options">
                   {pack.answers?.map((answer, index) => (
@@ -117,6 +143,7 @@ class Game extends React.Component {
                           className={ isActive ? 'btn_verde' : null }
                           name="correct-answer"
                           onClick={ this.changeColors }
+                          disabled={ isActive }
                         >
                           {answer}
                         </button>
@@ -129,6 +156,7 @@ class Game extends React.Component {
                           className={ isActive ? 'btn_vermelho' : null }
                           name="wrong-answer"
                           onClick={ this.changeColors }
+                          disabled={ isActive }
                         >
                           {answer}
                         </button>
