@@ -12,10 +12,13 @@ class Header extends React.Component {
       <div className="Header">
         <img src={ url } alt="gravatar" data-testid="header-profile-picture" />
         <p data-testid="header-player-name">{ name }</p>
-        <p data-testid="header-score">
+        <p>
           Score:
           {' '}
-          {score}
+          <span data-testid="header-score">
+            {score}
+          </span>
+
         </p>
 
       </div>

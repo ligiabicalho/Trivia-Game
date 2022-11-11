@@ -15,6 +15,7 @@ class Game extends React.Component {
       pack: {},
       isActive: false,
       timer: 30,
+      antiLoop: true,
     };
   }
 
@@ -23,14 +24,31 @@ class Game extends React.Component {
     this.startTimer();
   }
 
-  stopTimer = () => {
-    const { timer } = this.state;
-    if (timer === 0) {
-      clearInterval(this.intervalID);
+  componentDidUpdate() {
+    const { timer, antiLoop } = this.state;
+    if (timer === 0 && antiLoop) {
+      this.stopTimer();
       this.setState({
-        isActive: true,
+        antiLoop: false,
       });
     }
+  }
+
+  nextFeedback = () => {
+    const { contador } = this.state;
+    const { history } = this.props;
+    const four = 4;
+    if (contador >= four) {
+      console.log('if');
+      history.push('/feedback');
+    }
+  };
+
+  stopTimer = () => {
+    clearInterval(this.intervalID);
+    this.setState({
+      isActive: true,
+    });
   };
 
   startTimer = () => {
@@ -38,7 +56,7 @@ class Game extends React.Component {
     this.intervalID = setInterval(() => {
       this.setState((prev) => ({
         timer: prev.timer - 1,
-      }), () => this.stopTimer());
+      }));
     }, ONE_SECOND);
   };
 
@@ -50,7 +68,6 @@ class Game extends React.Component {
       localStorage.removeItem('token');
       history.push('/');
     }
-    console.log(data.results);
     this.setState({
       triviaResult: data.results,
     }, () => this.sortAnswers());
@@ -71,10 +88,12 @@ class Game extends React.Component {
   };
 
   nextQuestion = () => {
+    this.nextFeedback();
     this.setState((prevState) => ({
       contador: prevState.contador + 1,
       isActive: false,
       timer: 30,
+      antiLoop: true,
     }), () => this.sortAnswers());
     this.startTimer();
   };
@@ -106,6 +125,7 @@ class Game extends React.Component {
   };
 
   changeColors = ({ target }) => {
+    this.stopTimer();
     this.setState({
       isActive: true,
     });
@@ -121,12 +141,12 @@ class Game extends React.Component {
       isActive,
       timer,
     } = this.state;
-
+    const four = 4;
     return (
       <div className="Game">
         <Header />
         <div>
-          {triviaResult?.length > 0
+          {contador <= four && triviaResult?.length > 0
             ? (
               <div>
                 <h1 data-testid="question-category">{triviaResult[contador].category}</h1>
