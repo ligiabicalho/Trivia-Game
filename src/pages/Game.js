@@ -39,7 +39,6 @@ class Game extends React.Component {
     const { history } = this.props;
     const four = 4;
     if (contador >= four) {
-      console.log('if');
       history.push('/feedback');
     }
   };
