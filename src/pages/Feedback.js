@@ -6,7 +6,7 @@ import Button from '../components/Button';
 
 class Feedback extends React.Component {
   render() {
-    const { history, assertions } = this.props;
+    const { score, assertions, history } = this.props;
     const couldBeBetterLimit = 3;
     const feedbackText = assertions < couldBeBetterLimit
       ? 'Could be better...'
@@ -16,6 +16,12 @@ class Feedback extends React.Component {
         <Header />
         <p data-testid="feedback-text">
           {feedbackText}
+        </p>
+        <p data-testid="feedback-total-score">
+          {score}
+        </p>
+        <p data-testid="feedback-total-question">
+          {assertions}
         </p>
         <Button dataTestId="btn-play-again" btnName="Play Again" history={ history } />
         <Button dataTestId="btn-ranking" btnName="Ranking" history={ history } />
@@ -38,4 +44,3 @@ const mapStateToProps = ({ player }) => ({
 });
 
 export default connect(mapStateToProps)(Feedback);
-
