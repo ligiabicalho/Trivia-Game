@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 import { fetchQuestions } from '../services/fetchAPI';
 import '../App.css';
+import { actionCountScore } from '../redux/actions';
 
 class Game extends React.Component {
   constructor() {
@@ -13,7 +14,7 @@ class Game extends React.Component {
       triviaResult: [],
       pack: {},
       isActive: false,
-      timer: 5,
+      timer: 30,
     };
   }
 
@@ -26,7 +27,9 @@ class Game extends React.Component {
     const { timer } = this.state;
     if (timer === 0) {
       clearInterval(this.intervalID);
-      this.changeColors();
+      this.setState({
+        isActive: true,
+      });
     }
   };
 
@@ -47,6 +50,7 @@ class Game extends React.Component {
       localStorage.removeItem('token');
       history.push('/');
     }
+    console.log(data.results);
     this.setState({
       triviaResult: data.results,
     }, () => this.sortAnswers());
@@ -70,15 +74,44 @@ class Game extends React.Component {
     this.setState((prevState) => ({
       contador: prevState.contador + 1,
       isActive: false,
-      timer: 5,
+      timer: 30,
     }), () => this.sortAnswers());
     this.startTimer();
   };
 
-  changeColors = () => {
+  calcDificulty = () => {
+    const { triviaResult, contador } = this.state;
+    const hard = 3;
+    const medium = 2;
+    const easy = 1;
+    switch (triviaResult[contador].difficulty) {
+    case 'hard':
+      return hard;
+    case 'medium':
+      return medium;
+    case 'easy':
+      return easy;
+    default:
+      return 0;
+    }
+  };
+
+  countScore = () => {
+    const { dispatch } = this.props;
+    const { timer } = this.state;
+    const difficulty = this.calcDificulty();
+    const ten = 10;
+    const score = ten + (timer * difficulty);
+    dispatch(actionCountScore(score));
+  };
+
+  changeColors = ({ target }) => {
     this.setState({
       isActive: true,
     });
+    if (target.name === 'correct-answer') {
+      this.countScore();
+    }
   };
 
   render() {
@@ -108,6 +141,7 @@ class Game extends React.Component {
                           type="button"
                           data-testid="correct-answer"
                           className={ isActive ? 'btn_verde' : null }
+                          name="correct-answer"
                           onClick={ this.changeColors }
                           disabled={ isActive }
                         >
@@ -120,6 +154,7 @@ class Game extends React.Component {
                           type="button"
                           data-testid={ `wrong-answer-${index}` }
                           className={ isActive ? 'btn_vermelho' : null }
+                          name="wrong-answer"
                           onClick={ this.changeColors }
                           disabled={ isActive }
                         >
