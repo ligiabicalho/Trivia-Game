@@ -13,12 +13,31 @@ class Game extends React.Component {
       triviaResult: [],
       pack: {},
       isActive: false,
+      timer: 5,
     };
   }
 
   async componentDidMount() {
     await this.fetchTrivia();
+    this.startTimer();
   }
+
+  stopTimer = () => {
+    const { timer } = this.state;
+    if (timer === 0) {
+      clearInterval(this.intervalID);
+      this.changeColors();
+    }
+  };
+
+  startTimer = () => {
+    const ONE_SECOND = 1000;
+    this.intervalID = setInterval(() => {
+      this.setState((prev) => ({
+        timer: prev.timer - 1,
+      }), () => this.stopTimer());
+    }, ONE_SECOND);
+  };
 
   fetchTrivia = async () => {
     const { history } = this.props;
@@ -51,7 +70,9 @@ class Game extends React.Component {
     this.setState((prevState) => ({
       contador: prevState.contador + 1,
       isActive: false,
+      timer: 5,
     }), () => this.sortAnswers());
+    this.startTimer();
   };
 
   changeColors = () => {
@@ -63,8 +84,11 @@ class Game extends React.Component {
   render() {
     const { contador,
       triviaResult,
-      pack, isActive,
+      pack,
+      isActive,
+      timer,
     } = this.state;
+
     return (
       <div className="Game">
         <Header />
@@ -73,6 +97,7 @@ class Game extends React.Component {
             ? (
               <div>
                 <h1 data-testid="question-category">{triviaResult[contador].category}</h1>
+                <p>{ timer }</p>
                 <p data-testid="question-text">{triviaResult[contador].question}</p>
                 <div data-testid="answer-options">
                   {pack.answers?.map((answer, index) => (
@@ -84,6 +109,7 @@ class Game extends React.Component {
                           data-testid="correct-answer"
                           className={ isActive ? 'btn_verde' : null }
                           onClick={ this.changeColors }
+                          disabled={ isActive }
                         >
                           {answer}
                         </button>
@@ -95,6 +121,7 @@ class Game extends React.Component {
                           data-testid={ `wrong-answer-${index}` }
                           className={ isActive ? 'btn_vermelho' : null }
                           onClick={ this.changeColors }
+                          disabled={ isActive }
                         >
                           {answer}
                         </button>
