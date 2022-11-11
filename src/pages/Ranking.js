@@ -9,13 +9,16 @@ class Ranking extends React.Component {
 
   render() {
     return (
-      <button
-        type="button"
-        testid="btn-go-home"
-        onClick={ this.handleCLickHome }
-      >
-        Home
-      </button>
+      <>
+        <h1 data-testid="ranking-title">Ranking</h1>
+        <button
+          type="button"
+          data-testid="btn-go-home"
+          onClick={ this.handleCLickHome }
+        >
+          Home
+        </button>
+      </>
     );
   }
 }
