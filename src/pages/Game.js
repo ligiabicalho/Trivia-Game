@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
+import { addLocalStorage } from '../services/localStorage';
 import { fetchQuestions } from '../services/fetchAPI';
 import '../App.css';
 import { actionCountScore } from '../redux/actions';
@@ -34,11 +35,18 @@ class Game extends React.Component {
     }
   }
 
+  createRank = () => {
+    const { userName, score, userEmail } = this.props;
+    const userData = { userName, score, userEmail };
+    addLocalStorage(userData);
+  };
+
   nextFeedback = () => {
     const { contador } = this.state;
     const { history } = this.props;
     const four = 4;
     if (contador >= four) {
+      this.createRank();
       history.push('/feedback');
     }
   };
@@ -204,4 +212,10 @@ Game.propTypes = {
   }),
 }.isRequired;
 
-export default connect(null)(Game);
+const mapStateToProps = (globalState) => ({
+  userEmail: globalState.player.gravatarEmail,
+  userName: globalState.player.name,
+  score: globalState.player.score,
+});
+
+export default connect(mapStateToProps)(Game);

@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { cleanCountScore } from '../redux/actions';
 
 class Button extends React.Component {
   redirectPage = () => {
-    const { btnName, history } = this.props;
+    const { btnName, history, dispatch } = this.props;
+    dispatch(cleanCountScore());
     switch (btnName) {
     case 'Play Again':
       return history.push('/');
@@ -37,4 +40,4 @@ Button.propTypes = {
   }),
 }.isRequired;
 
-export default Button;
+export default connect(null)(Button);
