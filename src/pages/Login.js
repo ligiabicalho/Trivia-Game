@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import logo from '../trivia.png';
 import { fetchApiToken } from '../services/fetchAPI';
-import saveLocalStorage from '../services/localStorage';
+import { saveLocalStorage } from '../services/localStorage';
 import { actionUserLogin } from '../redux/actions';
 
 class Login extends React.Component {
