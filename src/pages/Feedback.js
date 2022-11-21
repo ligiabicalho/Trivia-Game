@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Button from '../components/Button';
+import logo from '../trivia.png';
 
 class Feedback extends React.Component {
   render() {
@@ -12,20 +13,25 @@ class Feedback extends React.Component {
       ? 'Could be better...'
       : 'Well Done!';
     return (
-      <>
-        <Header />
-        <p data-testid="feedback-text">
-          {feedbackText}
-        </p>
-        <p data-testid="feedback-total-score">
-          {score}
-        </p>
-        <p data-testid="feedback-total-question">
-          {assertions}
-        </p>
-        <Button dataTestId="btn-play-again" btnName="Play Again" history={ history } />
-        <Button dataTestId="btn-ranking" btnName="Ranking" history={ history } />
-      </>
+      <div className="Pages">
+        <div className="Feedback">
+          <img src={ logo } className="App-logo" alt="logo" />
+          <Header />
+          <h2 data-testid="feedback-text">
+            {feedbackText}
+          </h2>
+          <p data-testid="feedback-total-score">
+            Score:
+            {score}
+          </p>
+          <p data-testid="feedback-total-question">
+            Correct Answers:
+            {assertions}
+          </p>
+          <Button dataTestId="btn-play-again" btnName="Play Again" history={ history } />
+          <Button dataTestId="btn-ranking" btnName="Ranking" history={ history } />
+        </div>
+      </div>
     );
   }
 }

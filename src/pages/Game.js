@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
+import logo from '../trivia.png';
 import { addLocalStorage } from '../services/localStorage';
 import { fetchQuestions } from '../services/fetchAPI';
 import '../App.css';
@@ -150,58 +151,82 @@ class Game extends React.Component {
     } = this.state;
     const four = 4;
     return (
-      <div className="Game">
-        <Header />
-        <div>
-          {contador <= four && triviaResult?.length > 0
-            ? (
-              <div>
-                <h1 data-testid="question-category">{triviaResult[contador].category}</h1>
-                <p>{ timer }</p>
-                <p data-testid="question-text">{triviaResult[contador].question}</p>
-                <div data-testid="answer-options">
-                  {pack.answers?.map((answer, index) => (
-                    answer === pack.correct_answer
-                      ? (
-                        <button
-                          key={ index }
-                          type="button"
-                          data-testid="correct-answer"
-                          className={ isActive ? 'btn_verde' : null }
-                          name="correct-answer"
-                          onClick={ this.changeColors }
-                          disabled={ isActive }
-                        >
-                          {answer}
-                        </button>
-                      )
-                      : (
-                        <button
-                          key={ index }
-                          type="button"
-                          data-testid={ `wrong-answer-${index}` }
-                          className={ isActive ? 'btn_vermelho' : null }
-                          name="wrong-answer"
-                          onClick={ this.changeColors }
-                          disabled={ isActive }
-                        >
-                          {answer}
-                        </button>
-                      )
-                  ))}
+      <div className="Pages">
+        <div className="Game">
+          <img src={ logo } className="App-logo" alt="logo" />
+          <Header />
+          <div>
+            {contador <= four && triviaResult?.length > 0
+              ? (
+                <div>
+                  <h3
+                    data-testid="question-category"
+                  >
+                    {triviaResult[contador].category}
+                  </h3>
+                  <p>
+                    Time Left:
+                    {' '}
+                    { timer }
+                    {' '}
+                    seconds
+                  </p>
+                  <h2
+                    className="Question-game"
+                    data-testid="question-text"
+                  >
+                    {triviaResult[contador].question}
+
+                  </h2>
+                  <div data-testid="answer-options">
+                    {pack.answers?.map((answer, index) => (
+                      answer === pack.correct_answer
+                        ? (
+                          <button
+                            key={ index }
+                            type="button"
+                            data-testid="correct-answer"
+                            className={ isActive ? 'btn_verde' : 'Button-game' }
+                            name="correct-answer"
+                            onClick={ this.changeColors }
+                            disabled={ isActive }
+                          >
+                            {answer}
+                          </button>
+                        )
+                        : (
+                          <button
+                            key={ index }
+                            type="button"
+                            data-testid={ `wrong-answer-${index}` }
+                            className={ isActive ? 'btn_vermelho' : 'Button-game' }
+                            name="wrong-answer"
+                            onClick={ this.changeColors }
+                            disabled={ isActive }
+                          >
+                            {answer}
+                          </button>
+                        )
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )
+              )
 
-            : <p>Loading...</p>}
+              : <p>Loading...</p>}
 
-        </div>
-        { isActive
+          </div>
+          { isActive
           && (
-            <button type="button" onClick={ this.nextQuestion } data-testid="btn-next">
+            <button
+              className="Button-next"
+              type="button"
+              onClick={ this.nextQuestion }
+              data-testid="btn-next"
+            >
               Next
             </button>
           )}
+        </div>
       </div>
     );
   }

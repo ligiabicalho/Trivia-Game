@@ -46,50 +46,56 @@ class Login extends React.Component {
   render() {
     const { username, email } = this.state;
     return (
-      <div className="Login">
-        <header className="Login-header">
-          <img src={ logo } className="App-logo" alt="logo" />
-          <p>SUA VEZ</p>
-        </header>
-        <form>
-          <label htmlFor="name-input">
-            Nome:
-            <input
-              id="name-input"
-              type="text"
-              data-testid="input-player-name"
-              name="username"
-              value={ username }
-              onChange={ this.handleChange }
-            />
-          </label>
-          <label htmlFor="email-input">
-            E-mail:
-            <input
-              id="email-input"
-              type="email"
-              data-testid="input-gravatar-email"
-              name="email"
-              value={ email }
-              onChange={ this.handleChange }
-            />
-          </label>
-          <button
-            type="button"
-            data-testid="btn-play"
-            disabled={ !this.validation() }
-            onClick={ this.handlePlayClick }
-          >
-            Play
-          </button>
-          <button
-            type="button"
-            data-testid="btn-settings"
-            onClick={ this.handleSettingsClick }
-          >
-            Configurações
-          </button>
-        </form>
+      <div className="Pages">
+        <div className="Login">
+          <header className="Login-header">
+            <img src={ logo } className="App-logo" alt="logo" />
+          </header>
+          <form>
+            <label htmlFor="name-input">
+              <input
+                placeholder="What is your name?"
+                className="Inputs-login"
+                id="name-input"
+                type="text"
+                data-testid="input-player-name"
+                name="username"
+                value={ username }
+                onChange={ this.handleChange }
+              />
+            </label>
+            <label htmlFor="email-input">
+              <input
+                placeholder="What is your Gravatar email?"
+                className="Inputs-login"
+                id="email-input"
+                type="email"
+                data-testid="input-gravatar-email"
+                name="email"
+                value={ email }
+                onChange={ this.handleChange }
+              />
+            </label>
+            {/* <p className="Lets-play">VAMOS JOGAR?</p> */}
+            <button
+              className="Button-play"
+              type="button"
+              data-testid="btn-play"
+              disabled={ !this.validation() }
+              onClick={ this.handlePlayClick }
+            >
+              Play
+            </button>
+            <button
+              className="Button-config"
+              type="button"
+              data-testid="btn-settings"
+              onClick={ this.handleSettingsClick }
+            >
+              Settings
+            </button>
+          </form>
+        </div>
       </div>
     );
   }

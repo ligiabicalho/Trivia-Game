@@ -1,6 +1,8 @@
 import renderWithRouterAndRedux from './renderWithRouterAndRedux';
 import { screen } from '@testing-library/react';
 import App from '../../App';
+import Ranking from '../../pages/Ranking';
+import userEvent from '@testing-library/user-event';
 
 describe('Testes do componente Ranking', () => {
   const localStorageMock = (function () {
@@ -55,4 +57,7 @@ describe('Testes do componente Ranking', () => {
     const homeButton = screen.getByTestId('btn-go-home');
     expect(homeButton).toBeInTheDocument();
   });
+
+
+
 });

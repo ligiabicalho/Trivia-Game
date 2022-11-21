@@ -23,6 +23,7 @@ class Button extends React.Component {
     const { dataTestId, btnName } = this.props;
     return (
       <button
+        className="Button-config"
         type="button"
         data-testid={ dataTestId }
         onClick={ this.redirectPage }

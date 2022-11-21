@@ -10,10 +10,22 @@ class Header extends React.Component {
     const url = `https://www.gravatar.com/avatar/${gravatar}`;
     return (
       <div className="Header">
-        <img src={ url } alt="gravatar" data-testid="header-profile-picture" />
-        <p data-testid="header-player-name">{ name }</p>
-        <p>
-          Score:
+        <img
+          className="Header-img"
+          src={ url }
+          alt="gravatar"
+          data-testid="header-profile-picture"
+        />
+        <p
+          className="Header-text"
+          data-testid="header-player-name"
+        >
+          PLAYER
+          {' '}
+          { name }
+        </p>
+        <p className="Header-text">
+          SCORE
           {' '}
           <span data-testid="header-score">
             {score}
