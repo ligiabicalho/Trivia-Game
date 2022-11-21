@@ -7,7 +7,7 @@ export const fetchApiToken = async () => {
 
 export const fetchQuestions = async () => {
   const token = localStorage.getItem('token');
-  const url = `https://opentdb.com/api.php?amount=5&token=${token}`;
+  const url = `https://opentdb.com/api.php?amount=5&encode=url3986&token=${token}`;
   const request = await fetch(url);
   const data = await request.json();
   return data;

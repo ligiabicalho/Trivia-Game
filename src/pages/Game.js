@@ -86,6 +86,7 @@ class Game extends React.Component {
     const random = 0.5;
     const answers = [triviaResult[contador].correct_answer,
       ...triviaResult[contador].incorrect_answers].sort(() => Math.random() - random);
+    decodeURIComponent(answers);
     this.setState({
       pack: {
         answers,
@@ -162,7 +163,7 @@ class Game extends React.Component {
                   <h3
                     data-testid="question-category"
                   >
-                    {triviaResult[contador].category}
+                    {decodeURIComponent(triviaResult[contador].category)}
                   </h3>
                   <p>
                     Time Left:
@@ -175,7 +176,7 @@ class Game extends React.Component {
                     className="Question-game"
                     data-testid="question-text"
                   >
-                    {triviaResult[contador].question}
+                    {decodeURIComponent(triviaResult[contador].question)}
 
                   </h2>
                   <div data-testid="answer-options">
@@ -191,7 +192,7 @@ class Game extends React.Component {
                             onClick={ this.changeColors }
                             disabled={ isActive }
                           >
-                            {answer}
+                            {decodeURIComponent(answer)}
                           </button>
                         )
                         : (
@@ -204,7 +205,7 @@ class Game extends React.Component {
                             onClick={ this.changeColors }
                             disabled={ isActive }
                           >
-                            {answer}
+                            {decodeURIComponent(answer)}
                           </button>
                         )
                     ))}
