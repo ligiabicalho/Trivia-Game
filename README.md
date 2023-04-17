@@ -42,7 +42,7 @@ Para o bom andamento do trabalho em equipe, utilizamos um quadro Kanban no Trell
 
 A sprint foi de 4 dias dedicados, em nov/2022.
 
-<p align="right"><a href="#sparkles-projeto-trivia-game">(De volta ao topo)</a></p>
+<p align="right"><a href="#sparkles-projeto-trivia-game-brain-alarm_clock">(Voltar ao topo)</a></p>
 
 ## Funcionalidades
 
@@ -76,7 +76,7 @@ Deploy: <a href="https://trivia-game-ligiabicalho.vercel.app/" target="_blank">h
 - Jest
 - React Testing Library
 
-<p align="right"><a href="#sparkles-projeto-trivia-game">(De volta ao topo)</a></p>
+<p align="right"><a href="#sparkles-projeto-trivia-game-brain-alarm_clock">(Voltar ao topo)</a></p>
 
 ## :gear: APIs
 
@@ -181,7 +181,7 @@ As requisições foram feitas  utilizando apenas o `fetch`, orientação dada pa
   
 </details>
 
-<p align="right"><a href="#sparkles-projeto-trivia-game">(De volta ao topo)</a></p>
+<p align="right"><a href="#sparkles-projeto-trivia-game-brain-alarm_clock">(Voltar ao topo)</a></p>
 
 ## Instalando o projeto localmente
 
@@ -200,7 +200,7 @@ Caso deseje instalar o projeto na sua máquina, siga os seguintes passos:
 É possível verificar o percentual da cobertura de testes que desenvolvemos com o comando:  
 `npm run test-coverage`
 
-<p align="right"><a href="#sparkles-projeto-trivia-game">(De volta ao topo)</a></p>
+<p align="right"><a href="#sparkles-projeto-trivia-game-brain-alarm_clock">(Voltar ao topo)</a></p>
 
 
 ## Requisitos do projeto
@@ -258,7 +258,7 @@ Utilizamos o quadro Kanban no Trello para acompanhar o andamento do trabalho em 
   No entanto, pode-se explorar os dados fornecidos pela API Trivia para, por exemplo, escolher quantidade, categorias, nível de dificuldade dentre outras possibilidades em relação as perguntas.
 </details>
 
-<p align="right"><a href="#sparkles-projeto-trivia-game">(De volta ao topo)</a></p>
+<p align="right"><a href="#sparkles-projeto-trivia-game-brain-alarm_clock">(Voltar ao topo)</a></p>
 
 ## Status de desenvolvimento
 
@@ -283,4 +283,4 @@ No entanto, pode-se ainda implementar a Tela de Settings, gerando maior personal
 Agradeço à Trybe por nos proporcionar esta oportunidade de aprendizado e desenvolvimento de habilidades técnicas e de trabalho em equipe. 
 Também agradeço aos colegas da equipe pelas trocas, aos instrutores e mentores que nos apoiaram e orientaram durante o projeto.
 
-<p align="right"><a href="#sparkles-projeto-trivia-game">(De volta ao topo)</a></p>
+<p align="right"><a href="#sparkles-projeto-trivia-game-brain-alarm_clock">(Voltar ao topo)</a></p>
