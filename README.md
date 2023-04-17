@@ -32,7 +32,7 @@ Foi desenvolvido em grupo, utilizando metodologias ágeis (scrum e kanban), como
 
 O projeto foi desenvolvido em grupo e nosso desafio foi desenvolver a interface em React js de um jogo de perguntas e respostas, implementando diversas [funcionalidades](#funcionalidades) que exigiram habilidades com ciclo de vida de componentes, além do gerenciamento de estado da aplicação com Redux, sendo necessário criar: _store_, _reducers_, _actions_ síncronas e assíncronas, _dispatchers_ e conectar o Redux aos componentes React.
 
-A base de dados é da [API do Trivia](), mas também consumimos a [API Gravatar]() para resgatar, quando possível, a foto do usuário logado.
+A base de dados é da [API do Trivia](#gear-apis), mas também consumimos a [API Gravatar](#gear-apis) para resgatar, quando possível, a foto do usuário logado.
 
 Além disso, também implementamos testes para garantir uma boa cobertura da aplicação.
 
@@ -42,13 +42,15 @@ Para o bom andamento do trabalho em equipe, utilizamos um quadro Kanban no Trell
 
 A sprint foi de 4 dias dedicados, em nov/2022.
 
+<p align="right"><a href="#sparkles-projeto-trivia-game">(De volta ao topo)</a></p>
+
 ## Funcionalidades
 
   - Logar no jogo e, se o email tiver cadastro no site <a href="https://pt.gravatar.com/" target="_blank">Gravatar</a>, a foto será associada ao perfil da pessoa usuária.
   - Página referente ao jogo, onde se deverá escolher uma resposta para cada uma das perguntas apresentadas. 
   - A resposta deve ser marcada antes do timer de 30s chegar a zero, caso contrário a resposta é ser considerada errada.
   - Após 5 perguntas respondidas, a pessoa usuária é direcionada para a tela de score, onde o texto mostrado depende do número de acertos.
-  - O score é contabilizado não só com a quantidade de acertos, mas também o tempo gasto para responder a pergunta.
+  - O score é contabilizado não só com a quantidade de acertos, mas também considerando o tempo restante e a dificuldade da pergunta.
   - Visualizar a página de ranking, se quiser, ao final de cada jogo.
   - Configurar algumas opções para o jogo em uma tela de configuração acessível a partir do cabeçalho do app. (A implementar)
 
@@ -60,7 +62,6 @@ Sugestão de uso opcional para estilização:
 
 Deploy: <a href="https://trivia-game-ligiabicalho.vercel.app/" target="_blank">https://trivia-game-ligiabicalho.vercel.app/</a>
 
-<p align="right"><a href="#sparkles-projeto-trivia-game">(De volta ao topo)</a></p>
 
 ## Tecnologias utilizadas
 
@@ -184,7 +185,7 @@ As requisições foram feitas  utilizando apenas o `fetch`, orientação dada pa
 
 ## Instalando o projeto localmente
 
-Caso deseje instalar o projeto localmente, siga os seguintes passos:
+Caso deseje instalar o projeto na sua máquina, siga os seguintes passos:
 
 1. Clone o repositório  
 `git clone git@github.com:ligiabicalho/Trivia-Game.git`
@@ -222,9 +223,9 @@ Utilizamos o quadro Kanban no Trello para acompanhar o andamento do trabalho em 
   5. Crie um _header_ que deve conter as informações da pessoa jogadora.
   6. Crie a página de jogo que deve conter as informações relacionadas à pergunta.
   7. Desenvolva o estilo que, ao clicar em uma resposta, a correta deve ficar verde e as incorretas, vermelhas.
-  8. Desenvolva um timer onde a pessoa que joga tem 30 segundos para responder.
+  8. Desenvolva um _timer_ onde a pessoa que joga tem 30 segundos para responder.
   9. Crie o placar com as seguintes características:
-      - sddsfd
+      - O cálculo dos pontos por pergunta é: `10 + (timer * dificuldade)`, sendo `timer` o tempo restante do contador.
   10. Crie um botão de "Next" que apareça após a resposta ser dada.
   11. Desenvolva o jogo de forma que a pessoa que joga deve responder 5 perguntas no total.
   21. (Bônus) Desenvolva testes para atingir 90% de cobertura da tela de Jogo.
