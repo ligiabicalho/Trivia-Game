@@ -42,15 +42,27 @@ Para o bom andamento do trabalho em equipe, utilizamos um quadro Kanban no Trell
 
 A sprint foi de 4 dias dedicados, em nov/2022.
 
+## Habilidades
+
+- Implementação adequada de componentes React.
+- Gerenciamento de estado com Redux.
+- Consumo de APIs públicas.
+- JavaScript assíncrono (async/await).
+- Implementação de testes unitários.
+- Trabalho em equipe e metodologias ágeis: scrum e kanban.
+
 <p align="right"><a href="#sparkles-projeto-trivia-game-brain-alarm_clock">(Voltar ao topo)</a></p>
 
 ## Funcionalidades
 
-  - Logar no jogo e, se o email tiver cadastro no site <a href="https://pt.gravatar.com/" target="_blank">Gravatar</a>, a foto será associada ao perfil da pessoa usuária.
-  - Página referente ao jogo, onde se deverá escolher uma resposta para cada uma das perguntas apresentadas. 
-  - A resposta deve ser marcada antes do timer de 30s chegar a zero, caso contrário a resposta é ser considerada errada.
-  - Após 5 perguntas respondidas, a pessoa usuária é direcionada para a tela de score, onde o texto mostrado depende do número de acertos.
-  - O score é contabilizado não só com a quantidade de acertos, mas também considerando o tempo restante e a dificuldade da pergunta.
+  - Tela de Login: se o email tiver cadastro no site <a href="https://pt.gravatar.com/" target="_blank">Gravatar</a>, a foto será associada ao perfil da pessoa usuária.
+  - Tela de jogo:
+    - Apresenta uma pergunta por vez, com suas opções de resposta. 
+    - A resposta deve ser marcada antes do _timer_ de 30s chegar a zero.
+    - Caso contrário, a resposta será considerada errada.
+    - Placar no _header_ da aplicação, atualizado a cada resposta dada.
+  - Após 5 perguntas respondidas, direciona para a tela de score, onde o texto mostrado depende do número de acertos.
+    - O _score_ é contabilizado considerando o tempo restante e a dificuldade da pergunta.
   - Visualizar a página de ranking, se quiser, ao final de cada jogo.
   - Configurar algumas opções para o jogo em uma tela de configuração acessível a partir do cabeçalho do app. (A implementar)
 
